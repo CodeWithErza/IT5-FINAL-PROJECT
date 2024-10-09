@@ -11,6 +11,10 @@ class DetailsRoom:
         self.root.title("Hotel Management System")
         self.root.geometry("1295x550+230+220")
 
+        #-------------title--------------------
+        lbl_title=Label(self.root,text="ROOMBOOKING DETAILS",font=("times new roman",18,"bold"),bg="#89b0a4", fg="#f7e7ce", bd=4, relief=RIDGE)
+        lbl_title.place(x=0,y=0,width=1295,height=50)
+
 #--------------logo - --------------------
         try:
             img2 = Image.open("logo.jpeg")
@@ -22,10 +26,6 @@ class DetailsRoom:
 
         except FileNotFoundError:
             print("Image file not found. Please check the path for the first image.")
-
-        #-------------title--------------------
-        lbl_title=Label(self.root,text="ROOMBOOKING DETAILS",font=("times new roman",18,"bold"),bg="#89b0a4", fg="#f7e7ce", bd=4, relief=RIDGE)
-        lbl_title.place(x=0,y=0,width=1295,height=50)
 
 # -------------labelframe----------------------
         lblframeleft = LabelFrame(self.root, bd=2, relief=RIDGE, text="New Room Add",font=("times new roman", 12, "bold"),bg="#89b0a4", fg="#f7e7ce")
