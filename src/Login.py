@@ -1,10 +1,10 @@
+import mysql.connector
 from tkinter import*
 from tkinter import ttk
 from PIL import Image, ImageTk
 from tkinter import messagebox
 from Register import Register
 from Menu import HotelManagementSystem
-import mysql.connector
 
 def main():
     win = Tk()
