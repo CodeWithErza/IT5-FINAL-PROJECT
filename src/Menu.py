@@ -1,13 +1,16 @@
 from tkinter import *
+from tkinter import messagebox
+
 from PIL import Image, ImageTk
 from customer import Cust_Win
 from room import Roombooking
+from details import DetailsRoom
 
 class HotelManagementSystem:
     def __init__(self, root):
         self.root = root
         self.root.title("Hotel Management System")
-        # self.root.geometry("1550x800+0+0")  # Window size
+        self.root.geometry("1550x800+0+0")  # Window size
         self.root.state("zoomed")
 
         # ===================== 2nd Image (Left Side) ==================
@@ -60,7 +63,7 @@ class HotelManagementSystem:
                           bg="#89b0a4", fg="#f7e7ce", bd=0)
         room_btn.grid(row=1, column=0, pady=5)
 
-        details_btn = Button(btn_frame, text="DETAILS", width=22, font=("times new roman", 14, "bold"),
+        details_btn = Button(btn_frame, text="DETAILS",command=self.booking_details,width=22, font=("times new roman", 14, "bold"),
                              bg="#89b0a4", fg="#f7e7ce", bd=0)
         details_btn.grid(row=2, column=0, pady=5)
 
@@ -68,7 +71,7 @@ class HotelManagementSystem:
                             bg="#89b0a4", fg="#f7e7ce", bd=0)
         report_btn.grid(row=3, column=0, pady=5)
 
-        logout_btn = Button(btn_frame, text="LOGOUT", width=22, font=("times new roman", 14, "bold"),
+        logout_btn = Button(btn_frame, text="LOGOUT",command=self.logout_question, width=22, font=("times new roman", 14, "bold"),
                             bg="#89b0a4", fg="#f7e7ce", bd=0)
         logout_btn.grid(row=4, column=0, pady=5)
 
@@ -102,6 +105,21 @@ class HotelManagementSystem:
     def room_details(self):
         self.new_window = Toplevel(self.root)
         self.app=Roombooking(self.new_window)
+
+    def booking_details(self):
+        self.new_window = Toplevel(self.root)
+        self.app=DetailsRoom(self.new_window)
+
+    def logout_question(self):
+        question = messagebox.askyesno("Hotel Management System", "Are you sure you want to logout?", parent= self.root)
+        if question>0:
+            self.root.destroy()
+        else:
+            if not self.question:
+                return
+
+
+
 if __name__ == "__main__":
     root = Tk()
     obj = HotelManagementSystem(root)

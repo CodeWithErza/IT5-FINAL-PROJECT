@@ -104,11 +104,11 @@ class Register():
         #=========== BUTTONS ==============
         register_now_button = Button(frame, text="Register Now", font=("Garamond", 12, "bold"), 
                                     borderwidth=3, relief="ridge", fg="white", bg="red", command= self.register_data)
-        register_now_button.place(x= 20, y=430, width= 250, height= 50)
+        register_now_button.place(x= 170, y=430, width= 250, height= 50)
 
-        login_button = Button(frame, text="Login Now", font=("Garamond", 12, "bold"), 
-                            borderwidth=3, relief="ridge", fg="white", bg="blue" ,command=self.login_window)
-        login_button.place(x=300, y=430, width= 250, height= 50)
+        # login_button = Button(frame, text="Login Now", font=("Garamond", 12, "bold"),
+        #                     borderwidth=3, relief="ridge", fg="white", bg="blue" ,command=self.login_window)
+        # login_button.place(x=300, y=430, width= 250, height= 50)
 
         #=========== FUNCTION DECLARATION =========
     def register_data(self):

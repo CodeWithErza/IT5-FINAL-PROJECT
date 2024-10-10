@@ -28,10 +28,10 @@ class DetailsRoom:
         lbl_title.place(x=0,y=0,width=1295,height=50)
 
 # -------------labelframe----------------------
-        lblframeleft = LabelFrame(self.root, bd=2, relief=RIDGE, text="New Room Add",font=("times new roman", 12, "bold"))
-        lblframeleft.place(x=5, y=50, width=540, height=350)
+        lblframeleft = LabelFrame(self.root, bd=2, relief=RIDGE, text="New Room Add",font=("times new roman", 12, "bold"),bg="#89b0a4", fg="#f7e7ce")
+        lblframeleft.place(x=5, y=50, width=1500, height=500)
 #Floor
-        lblfloor=Label(lblframeleft,text="Floor",font=("times new roman",12,"bold"),padx=2,pady=6)
+        lblfloor=Label(lblframeleft,text="Floor",font=("times new roman",12,"bold"),padx=2,pady=6,bg="#89b0a4", fg="#f7e7ce")
         lblfloor.grid(row=0,column=0,sticky=W,padx=20)
 
         self.varfloor=StringVar()
@@ -39,7 +39,7 @@ class DetailsRoom:
         entryfloor.grid(row=0,column=1,sticky=W)
 
 #room number
-        lblroom=Label(lblframeleft,text="Room No",font=("times new roman",12,"bold"),padx=2,pady=6)
+        lblroom=Label(lblframeleft,text="Room No",font=("times new roman",12,"bold"),padx=2,pady=6,bg="#89b0a4", fg="#f7e7ce")
         lblroom.grid(row=1,column=0,sticky=W,padx=20)
 
         self.varroom=StringVar()
@@ -47,7 +47,7 @@ class DetailsRoom:
         entryroom.grid(row=1,column=1,sticky=W)
 
 #room type
-        lblroomtype=Label(lblframeleft,text="Room Type",font=("times new roman",12,"bold"),padx=2,pady=6)
+        lblroomtype=Label(lblframeleft,text="Room Type",font=("times new roman",12,"bold"),padx=2,pady=6,bg="#89b0a4", fg="#f7e7ce")
         lblroomtype.grid(row=2,column=0,sticky=W,padx=20)
 
         self.vartype=StringVar()
@@ -58,21 +58,21 @@ class DetailsRoom:
         buttonframe=Frame(lblframeleft,bd=2,relief=RIDGE)
         buttonframe.place(x=0,y=200,width=412,height=40)
 
-        buttonadd=Button(buttonframe, text="Add", command=self.add_data, font=("times new roman", 12, "bold"), bg="black", fg="gold", width=10)
+        buttonadd=Button(buttonframe, text="Add", command=self.add_data, font=("times new roman", 12, "bold"), bg="#0F3325", fg="white", width=10)
         buttonadd.grid(row=0,column=0,padx=1)
 
-        buttonupdate = Button(buttonframe, text="Update",command=self.update, font=("times new roman", 12, "bold"), bg="black", fg="gold",width=10)
+        buttonupdate = Button(buttonframe, text="Update",command=self.update, font=("times new roman", 12, "bold"), bg="#0F3325", fg="white",width=10)
         buttonupdate.grid(row=0, column=1, padx=1)
 
-        buttondelete = Button(buttonframe, text="Delete",command=self.mDelete, font=("times new roman", 12, "bold"), bg="black", fg="gold",width=10)
+        buttondelete = Button(buttonframe, text="Delete",command=self.mDelete, font=("times new roman", 12, "bold"), bg="#0F3325", fg="white",width=10)
         buttondelete.grid(row=0, column=2, padx=1)
 
-        buttonreset = Button(buttonframe, text="Reset",command=self.reset_data, font=("times new roman", 12, "bold"), bg="black", fg="gold",width=10)
+        buttonreset = Button(buttonframe, text="Reset",command=self.reset_data, font=("times new roman", 12, "bold"), bg="#0F3325", fg="white",width=10)
         buttonreset.grid(row=0, column=3, padx=1)
 
 #----------------table frame search system-------------
-        Tableframe=LabelFrame(self.root,bd=2,relief=RIDGE,text="Show Room Details",font=("times new roman",12,"bold"),padx=2)
-        Tableframe.place(x=600,y=50,width=600,height=350)
+        Tableframe=LabelFrame(self.root,bd=2,relief=RIDGE,text="Show Room Details",font=("times new roman",12,"bold"),padx=2,bg="#89b0a4", fg="#f7e7ce")
+        Tableframe.place(x=600,y=50,width=600,height=400)
 
         scrollx=ttk.Scrollbar(Tableframe,orient=HORIZONTAL)
         scrolly=ttk.Scrollbar(Tableframe,orient=VERTICAL)
@@ -103,7 +103,7 @@ class DetailsRoom:
             messagebox.showerror("Error","All fields are required",parent=self.root)
         else:
             try:
-                conn=mysql.connector.connect(host="localhost", user="root", password="", database="hotel")
+                conn=mysql.connector.connect(host="localhost", user="root", password="", database="hotel_management_system")
                 mycursor=conn.cursor()
                 mycursor.execute("INSERT INTO details (floor, roomno, roomtype) VALUES (%s,%s,%s)",(
 
@@ -119,7 +119,7 @@ class DetailsRoom:
                 messagebox.showerror("Database Error",f"Something went wrong:{str(es)}",parent=self.root)
 
     def fetch_data(self):
-        conn=mysql.connector.connect(host="localhost", username="root", password="", database="hotel")
+        conn=mysql.connector.connect(host="localhost", username="root", password="", database="hotel_management_system")
         mycursor=conn.cursor()
         mycursor.execute("SELECT * FROM details")
         rows=mycursor.fetchall()
@@ -143,7 +143,7 @@ class DetailsRoom:
         if self.varfloor.get()=="":
             messagebox.showerror("Error", "Please enter floor number", parent=self.root)
         else:
-            conn=mysql.connector.connect(host ="localhost", username="root", password="", database="hotel")
+            conn=mysql.connector.connect(host ="localhost", username="root", password="", database="hotel_management_system")
             mycursor=conn.cursor()
             mycursor.execute("UPDATE details SET floor=%s,roomtype=%s WHERE roomno=%s",(
 
@@ -159,7 +159,7 @@ class DetailsRoom:
     def mDelete(self):
         mDelete=messagebox.askyesno("Hotel Management System","Do you want to delete this customer?",parent=self.root)
         if mDelete>0:
-            conn=mysql.connector.connect(host="localhost", username="root", password="", database="hotel")
+            conn=mysql.connector.connect(host="localhost", username="root", password="", database="hotel_management_system")
             mycursor=conn.cursor()
             query="DELETE FROM details WHERE roomno=%s"
             value=(self.varroom.get(),)
